@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+	Micro Manager, an open source file manager for the Android system
+    Copyright (C) 2011  Mehdi Sohrabi <mehdok@gmail.com> <http://sourceforge.net/p/a-micromanager>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"	
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<HorizontalScrollView
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:scrollbars="none">
+    	<LinearLayout
+    		android:orientation="horizontal"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"    		
+    		android:gravity="center">
+    		<ImageButton
+    			android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:padding="6dp"
+    			android:layout_marginRight="2dp"
+    			android:layout_marginTop="6dp"
+    			android:src="@drawable/back"
+    			android:id="@+id/back_button" 
+    			android:onClick="backButtonMethod"/>
+    		<ImageButton
+    			android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:padding="6dp"
+    			android:layout_marginRight="2dp"
+    			android:layout_marginTop="6dp"
+    			android:src="@drawable/home"
+    			android:id="@+id/home_button"
+    			android:onClick="homeButtonMethod"/>
+    		<ImageButton
+    			android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:padding="6dp"
+    			android:layout_marginRight="2dp"
+    			android:layout_marginTop="6dp"
+    			android:src="@drawable/new_dir"
+    			android:id="@+id/new_dir_button"
+    			android:onClick="newDirButtonMethod"/>
+    		<ImageButton
+    			android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:padding="6dp"
+    			android:layout_marginRight="2dp"
+    			android:layout_marginTop="6dp"
+    			android:src="@drawable/paste"
+    			android:id="@+id/paste_button"
+    			android:onClick="pasteButtonMethod"/>
+    		<ImageButton 
+    			android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:padding="6dp"
+    			android:layout_marginRight="2dp"
+    			android:layout_marginTop="6dp"
+    			android:src="@drawable/refresh"
+    			android:id="@+id/refresh_button"
+    			android:onClick="refreshButtonMethod"/>
+    		<ImageButton 
+    			android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:padding="6dp"
+    			android:layout_marginRight="2dp"
+    			android:layout_marginTop="6dp"
+    			android:src="@drawable/info"
+    			android:id="@+id/info_button"
+    			android:onClick="infoButtonMethod"/>
+    		
+    	</LinearLayout>
+    </HorizontalScrollView>
+    <TextView
+	    	android:id="@+id/selection"		    	
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout_weight="0"/>
+	<TextView
+			android:id="@+id/copy_move_label"
+			android:textColor="@color/green"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"/>
+	<ListView
+    		android:layout_width="fill_parent"
+    		android:layout_height="fill_parent"
+    		android:layout_weight="2"
+    		android:smoothScrollbar="true"
+    		android:longClickable="true"
+    		android:drawSelectorOnTop="true"    		
+    		android:id="@+id/android:list"/>
+</LinearLayout>

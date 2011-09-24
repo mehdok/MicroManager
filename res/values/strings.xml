@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+	Micro Manager, an open source file manager for the Android system
+    Copyright (C) 2011  Mehdi Sohrabi <mehdok@gmail.com> <http://sourceforge.net/p/a-micromanager>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<resources>
+    <string name="hello">Hello World, main!</string>
+    <string name="app_name">Micro Manager</string>
+    <string name="info_title">Micro Manager</string>
+    <string name="info_message">version : 0.5\n
+    	Copyright (C) 2011 Mehdi Sohrabi  &lt;mehdok@gmail.com&gt;\n
+    	http://sourceforge.net/p/a-micromanager\n    	
+    	License : http://www.gnu.org/licenses/\n\n\
+    	Icons By :Aleksandra Wolska\n 
+		e-mail: wolskaola@gmail.com\n
+		www: olawolska.com, graffika.org</string>
+    
+    <string name="MEDIA_BAD_REMOVAL">the SD card was removed before it was unmounted.</string>
+    <string name="MEDIA_MOUNTED">the SD card is present and mounted at its mount point with read/write access.</string>
+    <string name="MEDIA_MOUNTED_READ_ONLY">the SD card is present and mounted at its mount point with read only access.</string>
+    <string name="MEDIA_REMOVED">the SD card is not present.</string>
+    <string name="MEDIA_SHARED">the SD card is present not mounted, and shared via USB mass storage.</string>
+    <string name="MEDIA_UNMOUNTABLE">the SD card is present but cannot be mounted.</string>
+    <string name="MEDIA_UNMOUNTED"> the SD card is present but not mounted. </string>
+    
+	<string name="error">ERROR</string>    
+	<string name="exit">Exit</string>
+	<string name="ok">OK</string>
+	<string name="cancel">Cancel</string>
+	
+	<string name="listgui">List View</string>
+	<string name="preferences">Preferences</string>
+	
+	<string name="root">sdcard</string>
+	
+	<string name="mkdir">New Directory</string>
+	<string name="mkdir_text">Enter Name Of The New Directory</string>
+	<string name="rename_text">Enter New Name</string>
+	<string name="rename">Rename</string>
+	
+	<string name="mkdir_succ">Your New Directory Created Successfuly</string>
+	<string name="mkdir_fail">Your New Directory Not Created Due Unknown Error</string>
+	<string name="mkdir_not_writeable">The Current Directory Is Not Write Able , So Your New Directory Couldn\'t Be Created</string>
+	<string name="mkdir_zero_input">Nothing Created</string>
+	
+	<string name="rename_succ">Rename Successfuly</string>
+	<string name="rename_fail">Couldn\'t Rename Due Unknown Error</string>
+	<string name="rename_not_writeable">The Current File Is Not Writeable</string>
+	<string name="rename_zero_input">Nothing Renamed</string>
+	
+	<string name="can_not_read_dir">This Directory Is Not Readable Due To Permission</string>
+	
+	<string name="copy_label">Copy</string>
+    <string name="move_label">Move</string>
+    <string name="paste_label">Paste</string>
+    <string name="rename_label">Rename</string>
+    <string name="delete_label">Delete</string>
+    <string name="properties_label">Properties</string>
+    
+    <string name="delete_succ">Your Item(s) Deleted Successfuly</string>
+    <string name="delete_fail">Can Not Delete This Item(s) Due To Permission</string>
+    
+    <string name="copy_succ">The Item(s) Copied Successfuly</string>
+    <string name="copy_fail">Can Not Copy The Item(s)</string>
+    
+    <string name="move_succ">The Item(s) Moved Successfuly</string>
+    <string name="move_fail">Can Not Move The Item(s)</string>
+    <string name="copy_but_not_move">The Item(s) Copied But Due To Permission Could Not Moved</string>
+    
+    <string name="app_not_found">Sorry , Proper Application To Run Your File Not Found</string>
+</resources>
