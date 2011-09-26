@@ -546,12 +546,12 @@ public class main extends ListActivity
     
    	public void onListItemClick(ListView parent,  View v, int position, long id)
    	{
-    	String currentPathTemp = currentPath  + items[position] + java.io.File.separatorChar;
+    	String currentPathTemp = currentPath  + items[position];
     	if(fa.checkDirectory(currentPathTemp))
     	{
     		if(fa.isReadable(currentPathTemp))
     		{
-    			currentPath = currentPathTemp;
+    			currentPath = currentPathTemp + java.io.File.separatorChar;
     			display();
     		}
     		else
