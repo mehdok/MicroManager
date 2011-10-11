@@ -22,13 +22,7 @@
     <string name="hello">Hello World, main!</string>
     <string name="app_name">Micro Manager</string>
     <string name="info_title">Micro Manager</string>
-    <string name="info_message">version : 0.5\n
-    	Copyright (C) 2011 Mehdi Sohrabi  &lt;mehdok@gmail.com&gt;\n
-    	http://sourceforge.net/p/a-micromanager\n    	
-    	License : http://www.gnu.org/licenses/\n\n\
-    	Icons By :Aleksandra Wolska\n 
-		e-mail: wolskaola@gmail.com\n
-		www: olawolska.com, graffika.org</string>
+    <string name="info_message">Micro Manager V 0.6 (10/11/2011)\n\nCopyRight (C) 2011 Mehdi Sohrabi\n\nSourceforge.net/p/a-micromanager</string>
     
     <string name="MEDIA_BAD_REMOVAL">the SD card was removed before it was unmounted.</string>
     <string name="MEDIA_MOUNTED">the SD card is present and mounted at its mount point with read/write access.</string>
@@ -82,5 +76,16 @@
     <string name="move_fail">Can Not Move The Item(s)</string>
     <string name="copy_but_not_move">The Item(s) Copied But Due To Permission Could Not Moved</string>
     
+    <string name="hidden_fail">Can not hide this item</string>
+    <string name="unhidden_fail">Can not unhide this item</string>
+    
     <string name="app_not_found">Sorry , Proper Application To Run Your File Not Found</string>
+    
+    <string name="sort">Sort</string>
+    <string name="sort_by_name">Sort By Name</string>
+    <string name="sort_by_size">Sort By Size</string>
+    <string name="ascending">Ascending</string>
+    <string name="descending">Descending</string>
+    
+    
 </resources>

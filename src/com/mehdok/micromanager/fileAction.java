@@ -1,5 +1,5 @@
 /*
-    Micro Manager, an open source file manager for the Android system
+    Micro Manager, an open source file manager for the Android systems
     Copyright (C) 2011  Mehdi Sohrabi <mehdok@gmail.com> <http://sourceforge.net/p/a-micromanager>
 
     This program is free software: you can redistribute it and/or modify
@@ -26,16 +26,13 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
-
 import android.os.Environment;
 import android.webkit.MimeTypeMap;
 
-public class fileAction
-{
-	private static final int KB = 1024;
-	private static final int MB = KB * KB;
-	private static final int GB = MB * KB;
-	private static final int BUFFERSIZE =64 * 1024;	
+public class FileAction
+{	
+	private static final int BUFFER_SIZE = 64 * 1024;
+	public static final Long DIRECTORY_SIZE = new Long(-1);
 	
 	
 	public String getMimeType(String item)
@@ -52,31 +49,31 @@ public class fileAction
 	
 	public boolean checkFile(String currentPath)
 	{
-		File name = createFile(currentPath);
-		return (name.isFile());
+		File file = createFile(currentPath);
+		return (file.isFile());
 	}	
 	
 	public boolean checkDirectory(String currentPath)
 	{
-		File name = createFile(currentPath);
-		return (name.isDirectory());
+		File file = createFile(currentPath);
+		return (file.isDirectory());
 	}
 	
 	public String findParent(String currentPath)
 	{
-		File name = createFile(currentPath);
-		String parentPath = name.getParent();
+		File file = createFile(currentPath);
+		String parentPath = file.getParent();
 		if (!(parentPath.equals("/")))
 			parentPath = parentPath + "/";
 		return (parentPath);
 	}	
 	
 	public String[] getItemList(String currentPath, boolean showHiddenFile)
-	{
+	{		
 		if(showHiddenFile)
 		{
-			File name = createFile(currentPath);
-			String itemList[] = name.list();
+			File file = createFile(currentPath);
+			String itemList[] = file.list();
 			return(itemList);
 		}		
 		else 
@@ -89,57 +86,32 @@ public class fileAction
 				}
 			};
 			
-			File name = createFile(currentPath);
-			String itemList[] = name.list(filter);
+			File file = createFile(currentPath);
+			String itemList[] = file.list(filter);
 			return itemList;			
-		}		
-	}	
+		}			
+	}
 	
-	public String getSize(String currentPath)
+	public Long getSize(String currentPath)
 	{
-		File name = createFile(currentPath);
-		if(name.isFile())
+		File file = createFile(currentPath);
+		if(file.isFile())
 		{
-			long size= name.length();
-			if(size > GB)
-			{
-				size = size / GB;
-				String s = new Long(size).toString();
-				s = s + " GB";
-				return (s);
-			}			
-			else if(size > MB)
-			{
-				size = size / MB;
-				String s = new Long(size).toString();
-				s = s + " MB";
-				return (s);
-			}			
-			else if (size > KB)
-			{
-				size = size / KB;
-				String s = new Long(size).toString();
-				s = s + " KB";
-				return (s);
-			}			
-			else
-			{
-				String s = new Long(size).toString();
-				s = s + " B";
-				return (s);
-			}
+			long size= file.length();
+			return (size);			
 		}
 		else
-			return "";
-	}	
+			//TO DO reverse call
+			return (DIRECTORY_SIZE);
+	}
 	
-	public boolean createDir(String currentPath, String nm)
+	public boolean createDir(String currentPath, String item)
 	{
 		if(isWriteable(currentPath))
 		{
-			String tempPath = currentPath + java.io.File.separatorChar + nm;
-			File name = createFile(tempPath);
-			boolean result = name.mkdir();
+			String tempPath = currentPath + item;
+			File file = createFile(tempPath);
+			boolean result = file.mkdir();
 			return (result);
 		}
 		else
@@ -150,81 +122,76 @@ public class fileAction
 	{
 		if(checkFile(currentPath) && isReadable(currentPath) && isWriteable(currentPath))
 		{
-			File name = createFile(currentPath);
-			return(name.delete());
+			File file = createFile(currentPath);
+			return(file.delete());
 		}
 		else if(checkDirectory(currentPath) && isReadable(currentPath) && isWriteable(currentPath))
 		{
 			String[] items = getItemList(currentPath, true);
 			if(items.length == 0)
 			{
-				File name = createFile(currentPath);
-				return (name.delete());
+				File file = createFile(currentPath);
+				return (file.delete());
 			}
 			else if(items.length > 0)
 			{
 				for(int i = 0 ; i < items.length ; i++)
 				{
-					String tempPath = currentPath + java.io.File.separatorChar + items[i];
+					String tempPath = currentPath + java.io.File.separatorChar + items[i] ;
 					if(checkDirectory(tempPath))
 						deleteFile(tempPath);
 					else if(checkFile(tempPath))
 					{
-						File name = createFile(tempPath);
-						name.delete();
+						File file = createFile(tempPath);
+						file.delete();
 					}
 				}
 			}
-			File name = createFile(currentPath);
-			return(name.delete());
+			File file = createFile(currentPath);
+			return(file.delete());
 		}
 		return(false);		
 	}	
 	
 	public boolean isWriteable(String currentPath)
 	{
-		File name = createFile(currentPath);
-		boolean result = name.canWrite();
+		File file = createFile(currentPath);
+		boolean result = file.canWrite();
 		return (result);
 	}	
 	
 	public boolean isReadable(String currentPath)
 	{
-		File name = createFile(currentPath);
-		boolean result = name.canRead();
+		File file = createFile(currentPath);
+		boolean result = file.canRead();
 		return (result);
 	}	
 	
-	public boolean rename(String currentPath, String newName)
+	public boolean rename(String oldName, String newName)
 	{		
-		File oldFile = createFile(currentPath);
-		String xxx = "";
-		if(checkFile(currentPath))
-			xxx = currentPath.substring(currentPath.lastIndexOf("."), currentPath.length());
-		
-		String pathTemp = findParent(currentPath) + java.io.File.separatorChar + newName + xxx;
-		File newFile = createFile(pathTemp);
+		File oldFile = createFile(oldName);
+		File newFile = createFile(newName);
 		boolean result = oldFile.renameTo(newFile);
-		return (result);		
+		return (result);
 	}	
 	
-	public boolean copyFile(String src, String des, String oldDir)
+	public boolean copyFile(String srcItem, String desDir, String srcDir)
 	{
-		String source = oldDir + java.io.File.separatorChar + src;
-		String destination = des + java.io.File.separatorChar + src;		
-		byte[] bufferedData =new byte[BUFFERSIZE];
+		String srcPath = srcDir + srcItem;
+		String desPath = desDir + srcItem;		
+		byte[] bufferedData =new byte[BUFFER_SIZE];
 		int readLength = 0;
 		
-		if(checkFile(source) && isReadable(source) && checkDirectory(des) && isWriteable(des))
+		if(checkFile(srcPath) && isReadable(srcPath) && checkDirectory(desDir) && isWriteable(desDir))
 		{
 			try
 			{				
-				FileInputStream inStream = new FileInputStream(source);
+				FileInputStream inStream = new FileInputStream(srcPath);
 				BufferedInputStream buffInStream = new BufferedInputStream(inStream);
-				FileOutputStream outStream = new FileOutputStream(destination);
+				FileOutputStream outStream = new FileOutputStream(desPath);
 				BufferedOutputStream buffOutStream = new BufferedOutputStream(outStream);
 				
-				while((readLength = buffInStream.read(bufferedData, 0, BUFFERSIZE)) != -1)
+				while((readLength = buffInStream.read(bufferedData, 0, BUFFER_SIZE)) != -1)
 					buffOutStream.write(bufferedData, 0, readLength);
 				buffOutStream.flush();
 				buffInStream.close();
@@ -243,32 +210,24 @@ public class fileAction
 			}
 		}
 		
-		else if(checkDirectory(source) && isReadable(source) && checkDirectory(des) && isWriteable(des))
+		else if(checkDirectory(srcPath) && isReadable(srcPath) && checkDirectory(desDir) && isWriteable(desDir))
 		{
-			String items[] = getItemList(source, true);
-			String newDir = des + java.io.File.separatorChar + src;
+			String items[] = getItemList(srcPath, true);
+			String newDir = desDir + srcItem + java.io.File.separatorChar ;
 			int Itemlength = items.length;
-			boolean result = createDir(des, src);
+			boolean result = createDir(desDir, srcItem);
 			if(!result)
 				return(false);
 			for(int i = 0 ; i < Itemlength ; i++)
-				copyFile(items[i], newDir, source);
+				copyFile(items[i], newDir, srcPath+ java.io.File.separatorChar);
 		}
-		return(true);
+		return(true);		
 	}	
 	
 	private File createFile(String currentPath)
 	{
-		File name = new File(currentPath);
-		return name;
-	}
-	
-	public String getLastModified(String currentPath)
-	{
-		File name = createFile(currentPath);
-		long lastModified = name.lastModified();
-		String s = new Long(lastModified).toString();
-		return (s);
+		File file = new File(currentPath);
+		return file;
 	}	
 	
 	public boolean isHidden(String itemName)
@@ -277,53 +236,12 @@ public class fileAction
 			return (true);
 		else
 			return (false);
-	}	
+	}
 	
-	public boolean setHidden(String currentPath, String name)
-	{		
-		if(checkFile(currentPath + java.io.File.separatorChar + name))
-		{
-			String newName = "." + name.substring(0, name.lastIndexOf("."));
-			boolean result = rename(currentPath + java.io.File.separatorChar + name, newName);
-			return (result);
-		}
-		else if(checkDirectory(currentPath + java.io.File.separatorChar + name))
-		{
-			String newName = "." + name;
-			boolean result = rename(currentPath + java.io.File.separatorChar + name, newName);
-			return (result);
-		}
-		return (false);					
-	}	
-	
-	public boolean setUnHidden(String currentPath, String name)
-	{
-		if(checkFile(currentPath + java.io.File.separatorChar + name))
-		{
-			String newName = name.substring(1, name.lastIndexOf("."));
-			boolean result = rename(currentPath + java.io.File.separatorChar + name, newName);
-			return (result);
-		}
-		else if(checkDirectory(currentPath + java.io.File.separatorChar + name))
-		{
-			String newName = name.substring(1);
-			boolean result = rename(currentPath + java.io.File.separatorChar + name, newName);
-			return (result);
-		}
-		return (false);		
-	}	
-	
-	public String getInternalStorage()
-	{
-		File internal = Environment.getDataDirectory();
-		String inAddress = internal.getPath();		
-		return(inAddress);
-	}	
-	
-	public String getExternalStorage()
+	public String getExternalStorageAddress()
 	{
 		File external = Environment.getExternalStorageDirectory();
-		String exAddress = external.getPath() + "/";		
+		String exAddress = external.getPath() + java.io.File.separatorChar;		
 		return(exAddress);
 	}		
 }

@@ -74,6 +74,15 @@
     			android:padding="6dp"
     			android:layout_marginRight="2dp"
     			android:layout_marginTop="6dp"
+    			android:src="@drawable/sort"
+    			android:id="@+id/sort_button"
+    			android:onClick="sortButtonMethod"/>
+    		<ImageButton 
+    			android:layout_width="wrap_content"
+    			android:layout_height="wrap_content"
+    			android:padding="6dp"
+    			android:layout_marginRight="2dp"
+    			android:layout_marginTop="6dp"
     			android:src="@drawable/refresh"
     			android:id="@+id/refresh_button"
     			android:onClick="refreshButtonMethod"/>

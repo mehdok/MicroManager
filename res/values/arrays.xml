@@ -26,4 +26,14 @@
 		<item>@string/delete_label</item>
 		<item>@string/properties_label</item>		
 	</array>
+	
+	<array name="sort_by">
+		<item>@string/sort_by_name</item>
+		<item>@string/sort_by_size</item>
+	</array>
+	
+	<array name="asce_desc">
+		<item>@string/ascending</item>
+		<item>@string/descending</item>
+	</array>
 </resources>

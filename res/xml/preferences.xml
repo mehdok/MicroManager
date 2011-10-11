@@ -25,4 +25,10 @@
 	android:title="Show Hidden Files"
 	android:summary="Toggle Hidden File"
 	android:defaultValue="true"/>
+  <EditTextPreference
+  	android:key="thumbnailSize"
+  	android:title="Thumbnail Size"
+  	android:summary="thumbnail size in pixel" 
+  	android:numeric="integer" 	
+  	android:defaultValue="64"/>
 </PreferenceScreen>

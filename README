@@ -1,31 +1,39 @@
 Author:
-		Mehdi Sohrabi <mehdok@gmail.com>
+	Mehdi Sohrabi <mehdok@gmail.com>
 		
 License:
-		GPL V.3
+	GPL V.3
 
-		Micro Manager, an open source file manager for the Android system
-		Copyright (C) 2011  Mehdi Sohrabi <mehdok@gmail.com> <http://sourceforge.net/p/a-micromanager>
+	Micro Manager, an open source file manager for the Android system
+	Copyright (C) 2011  Mehdi Sohrabi <mehdok@gmail.com> <http://sourceforge.net/p/a-micromanager>
 	
-		This program is free software: you can redistribute it and/or modify
-		it under the terms of the GNU General Public License as published by
-		the Free Software Foundation, either version 3 of the License, or
-		(at your option) any later version.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-		This program is distributed in the hope that it will be useful,
-		but WITHOUT ANY WARRANTY; without even the implied warranty of
-		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-		GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-		You should have received a copy of the GNU General Public License
-		along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	
 Instruction Of Running:
-
-	Micro Manager require:
-		The latest Android 2.2 SDK
-
+	phone:
+		the program needs latest varsion of android 2.2 OS
+	eclipse:
+		just select import/Existing Project into Workspace
 
 Version History
+	0.6:
+		up to 2X faster thumbnail loading
+		user options for thumbnail size in preferences
+		improve rename method
+		improve move method
+		less GUI update
+		adding Sort options
+		change many part of code for maintenance
 	0.5.0.1 :
-		solve problem in executing files
+		fix problem in executing files
