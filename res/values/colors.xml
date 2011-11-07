@@ -2,7 +2,7 @@
 
 <!-- 
 	Micro Manager, an open source file manager for the Android system
-    Copyright (C) 2011  Mehdi Sohrabi <mehdok@gmail.com> <http://sourceforge.net/p/a-micromanager>
+    Copyright (C) 2011  Mehdi Sohrabi <a.micromanager@gmail.com> <http://mehdok.blogspot.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,4 +21,7 @@
 <resources>
 	<color name="dark_blue">#880000FF</color>
 	<color name="green">#3AE427</color>
+	<color name="background_color_1">#1D1729</color>
+	<color name="background_color_2">#261E36</color>
+	<color name="text_color">#E1D6E8</color>
 </resources>

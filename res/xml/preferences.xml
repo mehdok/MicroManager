@@ -2,7 +2,7 @@
 
 <!-- 
 	Micro Manager, an open source file manager for the Android system
-    Copyright (C) 2011  Mehdi Sohrabi <mehdok@gmail.com> <http://sourceforge.net/p/a-micromanager>
+    Copyright (C) 2011  Mehdi Sohrabi <a.micromanager@gmail.com> <http://mehdok.blogspot.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,13 +22,51 @@
   xmlns:android="http://schemas.android.com/apk/res/android">
   <CheckBoxPreference
 	android:key="toggleHiddenFile"
-	android:title="Show Hidden Files"
-	android:summary="Toggle Hidden File"
+	android:title="@string/show_hidden_files"
+	android:summary="@string/toggle_hidden_files"
 	android:defaultValue="true"/>
   <EditTextPreference
   	android:key="thumbnailSize"
-  	android:title="Thumbnail Size"
-  	android:summary="thumbnail size in pixel" 
+  	android:title="@string/thumbnail_size"
+  	android:summary="@string/thumbnail_size_in_pixel" 
   	android:numeric="integer" 	
   	android:defaultValue="64"/>
+  <EditTextPreference
+  	android:key="textSize"
+  	android:title="@string/text_size"
+  	android:numeric="integer"
+  	android:defaultValue="14"/>
+  <ListPreference
+  	android:key="language"
+  	android:title="@string/language"
+  	android:summary="@string/lang_summery"
+  	android:entries="@array/language"
+  	android:entryValues="@array/lang_short"
+  	android:dialogTitle="@string/lang_summery"
+  	android:defaultValue="@string/english_short"/>
+  <PreferenceCategory 
+  	android:title="@string/gui_color">
+	<PreferenceScreen
+		android:key="guiColor"
+		android:title="@string/gui_color"
+		android:summary="@string/gui_color_summery">
+	<Preference
+  		android:key="textColor"
+  		android:title="@string/text_color"/>
+  	<Preference
+  		android:key="backColor1"
+  		android:title="@string/back_color_1"/>
+  	<Preference
+  		android:key="backColor2"
+  		android:title="@string/back_color_2"/>
+	</PreferenceScreen>
+  </PreferenceCategory> 
+  <PreferenceCategory
+  	android:title="@string/reset_setting">
+  	<Preference
+  		android:key="resetSetting"
+  		android:title="@string/reset_setting"
+  		android:summary="@string/reset_setting_summery"/>
+  </PreferenceCategory>
+  	
 </PreferenceScreen>

@@ -11,13 +11,18 @@ public final class R {
     public static final class array {
         public static final int Options=0x7f050000;
         public static final int asce_desc=0x7f050002;
+        public static final int lang_short=0x7f050004;
+        public static final int language=0x7f050003;
         public static final int sort_by=0x7f050001;
     }
     public static final class attr {
     }
     public static final class color {
+        public static final int background_color_1=0x7f060002;
+        public static final int background_color_2=0x7f060003;
         public static final int dark_blue=0x7f060000;
         public static final int green=0x7f060001;
+        public static final int text_color=0x7f060004;
     }
     public static final class drawable {
         public static final int alert=0x7f020000;
@@ -40,26 +45,29 @@ public final class R {
         public static final int web=0x7f020011;
     }
     public static final class id {
-        public static final int back_button=0x7f080000;
-        public static final int copy_move_label=0x7f080008;
-        public static final int hiddenCheckBox=0x7f08000f;
-        public static final int home_button=0x7f080001;
-        public static final int info_button=0x7f080006;
-        public static final int input_message=0x7f080009;
-        public static final int lastModifiedProperties=0x7f08000e;
-        public static final int mkdir_input=0x7f08000a;
-        public static final int name=0x7f080012;
-        public static final int nameProperties=0x7f08000b;
-        public static final int new_dir_button=0x7f080002;
-        public static final int paste_button=0x7f080003;
-        public static final int pathProperties=0x7f08000c;
-        public static final int refresh_button=0x7f080005;
-        public static final int rename_input=0x7f080010;
-        public static final int row_image=0x7f080011;
-        public static final int selection=0x7f080007;
-        public static final int size=0x7f080013;
-        public static final int sizeProperties=0x7f08000d;
-        public static final int sort_button=0x7f080004;
+        public static final int back_button=0x7f080001;
+        public static final int copy_move_label=0x7f080009;
+        public static final int hiddenCheckBox=0x7f080010;
+        public static final int home_button=0x7f080002;
+        public static final int info_button=0x7f080007;
+        public static final int lastModifiedProperties=0x7f08000f;
+        public static final int list_gui=0x7f080000;
+        public static final int mkdir_input=0x7f08000b;
+        public static final int mkdir_input_message=0x7f08000a;
+        public static final int name=0x7f080014;
+        public static final int nameProperties=0x7f08000c;
+        public static final int new_dir_button=0x7f080003;
+        public static final int paste_button=0x7f080004;
+        public static final int pathProperties=0x7f08000d;
+        public static final int refresh_button=0x7f080006;
+        public static final int rename_input=0x7f080012;
+        public static final int rename_input_message=0x7f080011;
+        public static final int row_image=0x7f080013;
+        public static final int selection=0x7f080008;
+        public static final int size=0x7f080015;
+        public static final int sizeProperties=0x7f08000e;
+        public static final int sort_button=0x7f080005;
+        public static final int toast_message=0x7f080016;
     }
     public static final class layout {
         public static final int listgui=0x7f030000;
@@ -68,6 +76,7 @@ public final class R {
         public static final int properties=0x7f030003;
         public static final int rename=0x7f030004;
         public static final int row_format=0x7f030005;
+        public static final int toast=0x7f030006;
     }
     public static final class string {
         public static final int MEDIA_BAD_REMOVAL=0x7f070004;
@@ -80,22 +89,32 @@ public final class R {
         public static final int app_name=0x7f070001;
         public static final int app_not_found=0x7f07002e;
         public static final int ascending=0x7f070032;
+        public static final int back_color_1=0x7f070049;
+        public static final int back_color_2=0x7f07004a;
         public static final int can_not_read_dir=0x7f07001e;
         public static final int cancel=0x7f07000e;
         public static final int copy_but_not_move=0x7f07002b;
         public static final int copy_fail=0x7f070028;
         public static final int copy_label=0x7f07001f;
         public static final int copy_succ=0x7f070027;
+        public static final int default_color=0x7f070042;
         public static final int delete_fail=0x7f070026;
         public static final int delete_label=0x7f070023;
         public static final int delete_succ=0x7f070025;
+        public static final int delete_warn=0x7f07003e;
         public static final int descending=0x7f070033;
+        public static final int english=0x7f07003a;
+        public static final int english_short=0x7f07003c;
         public static final int error=0x7f07000b;
         public static final int exit=0x7f07000c;
+        public static final int gui_color=0x7f070046;
+        public static final int gui_color_summery=0x7f070047;
         public static final int hello=0x7f070000;
         public static final int hidden_fail=0x7f07002c;
         public static final int info_message=0x7f070003;
         public static final int info_title=0x7f070002;
+        public static final int lang_summery=0x7f070039;
+        public static final int language=0x7f070038;
         public static final int listgui=0x7f07000f;
         public static final int mkdir=0x7f070012;
         public static final int mkdir_fail=0x7f070017;
@@ -108,7 +127,12 @@ public final class R {
         public static final int move_succ=0x7f070029;
         public static final int ok=0x7f07000d;
         public static final int paste_label=0x7f070021;
+        public static final int persian=0x7f07003b;
+        public static final int persian_short=0x7f07003d;
         public static final int preferences=0x7f070010;
+        public static final int prop_name=0x7f07003f;
+        public static final int prop_path=0x7f070040;
+        public static final int prop_size=0x7f070041;
         public static final int properties_label=0x7f070024;
         public static final int rename=0x7f070015;
         public static final int rename_fail=0x7f07001b;
@@ -117,10 +141,20 @@ public final class R {
         public static final int rename_succ=0x7f07001a;
         public static final int rename_text=0x7f070014;
         public static final int rename_zero_input=0x7f07001d;
+        public static final int reset_setting=0x7f07004b;
+        public static final int reset_setting_summery=0x7f07004c;
         public static final int root=0x7f070011;
+        public static final int select_color=0x7f070043;
+        public static final int select_color_title=0x7f070044;
+        public static final int show_hidden_files=0x7f070034;
         public static final int sort=0x7f07002f;
         public static final int sort_by_name=0x7f070030;
         public static final int sort_by_size=0x7f070031;
+        public static final int text_color=0x7f070048;
+        public static final int text_size=0x7f070045;
+        public static final int thumbnail_size=0x7f070036;
+        public static final int thumbnail_size_in_pixel=0x7f070037;
+        public static final int toggle_hidden_files=0x7f070035;
         public static final int unhidden_fail=0x7f07002d;
     }
     public static final class xml {

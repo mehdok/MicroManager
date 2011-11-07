@@ -1,6 +1,6 @@
 /*
     Micro Manager, an open source file manager for the Android system
-    Copyright (C) 2011  Mehdi Sohrabi <mehdok@gmail.com> <http://sourceforge.net/p/a-micromanager>
+    Copyright (C) 2011  Mehdi Sohrabi <a.micromanager@gmail.com> <http://mehdok.blogspot.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,11 +31,14 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,6 +52,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +60,7 @@ import android.preference.PreferenceManager;
 import android.app.ProgressDialog;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 
 public class Main extends ListActivity 
 {		
@@ -73,16 +78,31 @@ public class Main extends ListActivity
 	public static final int SORT_BY_NAME_DESC = 8;
 	public static final int SORT_BY_SIZE_ASCE = 9;
 	public static final int SORT_BY_SIZE_DESC = 10;
+	public static final int LTR = android.view.Gravity.LEFT;
+	public static final int RTL = android.view.Gravity.RIGHT;
+	public static final int CENTER = android.view.Gravity.CENTER;	
 	public static final String ROOT = "/" ;
+	public static final String ENGLISH = "en";
+	public static final String PERSIAN = "fa";
+	public static final String DEFAULT_TEXT_SIZE = "14";
+	public static final String DEFAULT_THUMBNAIL_SIZE = "64";
+	
 	
 	public static FileAction fileAction = new FileAction();
 	public static Context lContext ;
 	public static int thumbnailSize;
+	public static String language = ENGLISH;
+	public static int direction = LTR;
+	public static int textColor;
+	public static int backColor1;
+	public static int backColor2;
+	public static int textSize = Integer.parseInt(DEFAULT_TEXT_SIZE);//14;
+	public static Typeface fontRegular;
+	public static Typeface fontBold;
 	
     public String currentSdState = android.os.Environment.getExternalStorageState();
     public String currentPath = fileAction.getExternalStorageAddress();
-    public String items[] = null;
-    //public String[] itemsSize = null;
+    public String items[] = null;    
     public String oldName = null; 
     public String copy_move_Path = "";
     public String copy_move_item = ""; 
@@ -102,22 +122,28 @@ public class Main extends ListActivity
     public SharedPreferences sharedPreferences;
 	public ListView listView;	
 	public ArrayList<RowHolder> rowHolder = new ArrayList<RowHolder>();	
-	public RowAdapter rowAdapter;
+	public RowAdapter rowAdapter;	
 	
     
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) 
     {
-    	super.onCreate(savedInstanceState);
+    	super.onCreate(savedInstanceState);    	
     	requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-    	setContentView(R.layout.listgui);
+    	setContentView(R.layout.listgui);    	
     	checkSD();    	
     	selection = (TextView)findViewById(R.id.selection);
     	notification = (TextView)findViewById(R.id.copy_move_label);
     	backBtn = (ImageButton)findViewById(R.id.back_button);
     	homeBtn = (ImageButton)findViewById(R.id.home_button);
     	pasteBtn = (ImageButton)findViewById(R.id.paste_button);
-    	lContext = this;//getApplicationContext();		
+    	lContext = this;//getApplicationContext();
+    	textColor = getResources().getColor(R.color.text_color);
+    	backColor1 = getResources().getColor(R.color.background_color_1);
+    	backColor2 = getResources().getColor(R.color.background_color_2);
+    	fontRegular = Typeface.createFromAsset(getAssets(), "fonts/FreeFarsi.ttf");  
+    	fontBold = Typeface.createFromAsset(getAssets(), "fonts/FreeFarsi-Bold.ttf");
+    	setLanguage();
     	displayContent();
     }
     
@@ -130,8 +156,21 @@ public class Main extends ListActivity
     	super.onResume();    		
     	sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
     	showHiddenFile = sharedPreferences.getBoolean("toggleHiddenFile", true);    	
-    	String tSize = sharedPreferences.getString("thumbnailSize", "64");    	
-    	thumbnailSize = Integer.parseInt(tSize);
+    	String sThumbnailSize = sharedPreferences.getString("thumbnailSize", DEFAULT_THUMBNAIL_SIZE);    	
+    	thumbnailSize = Integer.parseInt(sThumbnailSize);
+    	String sTextSize = sharedPreferences.getString("textSize", DEFAULT_TEXT_SIZE); 
+    	textSize = Integer.parseInt(sTextSize);
+    	textColor = sharedPreferences.getInt("textColor", textColor);
+    	backColor1 = sharedPreferences.getInt("backColor1", backColor1);
+    	backColor2 = sharedPreferences.getInt("backColor2", backColor2);
+    	language = sharedPreferences.getString("language", ENGLISH);
+    	
+    	if(language.equals(PERSIAN))
+    		direction = RTL;
+    	else
+    		direction = LTR;
+    	
+    	setLanguage();
     	displayContent();
     }    
     
@@ -144,11 +183,17 @@ public class Main extends ListActivity
     public void onSaveInstanceState(Bundle savedInstanceState)
     {
     	super.onSaveInstanceState(savedInstanceState);
-    	savedInstanceState.putInt("pRequest", this.pasteRequest);
-    	savedInstanceState.putInt("sType", this.sortType);
-    	savedInstanceState.putString("cPath", this.currentPath);    	
-    	savedInstanceState.putString("copyMovePath", this.copy_move_Path);
-    	savedInstanceState.putString("copyMoveItem", this.copy_move_item);
+    	savedInstanceState.putInt("pref_pastRequest", this.pasteRequest);
+    	savedInstanceState.putInt("pref_sortType", this.sortType);
+    	savedInstanceState.putInt("pref_direction", direction);
+    	savedInstanceState.putInt("pref_textSize", textSize);
+    	savedInstanceState.putInt("pref_textColor", textColor);
+    	savedInstanceState.putInt("pref_backColor1", backColor1);
+    	savedInstanceState.putInt("pref_backColor2", backColor2);
+    	savedInstanceState.putString("pref_currentPath", this.currentPath);    	
+    	savedInstanceState.putString("pref_copyMovePath", this.copy_move_Path);
+    	savedInstanceState.putString("pref_copyMoveItem", this.copy_move_item);
+    	savedInstanceState.putString("pref_language", language);    
     }
     
     /*
@@ -160,11 +205,17 @@ public class Main extends ListActivity
     public void onRestoreInstanceState(Bundle savedInstanceState)
     {
     	super.onRestoreInstanceState(savedInstanceState);
-    	this.pasteRequest = savedInstanceState.getInt("pRequest");
-    	this.sortType = savedInstanceState.getInt("sType");
-    	this.currentPath = savedInstanceState.getString("cPath");    	
-    	this.copy_move_Path = savedInstanceState.getString("copyMovePath");
-    	this.copy_move_item = savedInstanceState.getString("copyMoveItem");
+    	this.pasteRequest = savedInstanceState.getInt("pref_pastRequest");
+    	this.sortType = savedInstanceState.getInt("pref_sortType");
+    	direction = savedInstanceState.getInt("pref_direction");
+    	textSize = savedInstanceState.getInt("pref_textSize");
+    	textColor = savedInstanceState.getInt("pref_textColor");
+    	backColor1 = savedInstanceState.getInt("pref_backColor1");
+    	backColor2 = savedInstanceState.getInt("pref_backColor2");
+    	this.currentPath = savedInstanceState.getString("pref_currentPath");    	
+    	this.copy_move_Path = savedInstanceState.getString("pref_copyMovePath");
+    	this.copy_move_item = savedInstanceState.getString("pref_copyMoveItem");
+    	language = savedInstanceState.getString("pref_language");
     }    
     
     public void checkSD ()
@@ -172,33 +223,33 @@ public class Main extends ListActivity
        	if(currentSdState.equals(android.os.Environment.MEDIA_MOUNTED))
         	currentPath = fileAction.getExternalStorageAddress();
         else if(currentSdState.equals(android.os.Environment.MEDIA_MOUNTED_READ_ONLY))
-       	{
-       		Toast.makeText(this, R.string.MEDIA_MOUNTED_READ_ONLY, Toast.LENGTH_LONG).show();
+       	{        	
+        	showMessage(R.string.MEDIA_MOUNTED_READ_ONLY);
        		currentPath = fileAction.getExternalStorageAddress();
        	}
        	else if(currentSdState.equals(android.os.Environment.MEDIA_BAD_REMOVAL))
         {            	
-            Toast.makeText(this, R.string.MEDIA_BAD_REMOVAL, Toast.LENGTH_LONG).show();
+       		showMessage(R.string.MEDIA_BAD_REMOVAL);
             currentPath = ROOT;
         }            
         else if(currentSdState.equals(android.os.Environment.MEDIA_REMOVED))
         {            	
-           	Toast.makeText(this, R.string.MEDIA_REMOVED, Toast.LENGTH_LONG).show();
+        	showMessage(R.string.MEDIA_REMOVED);
            	currentPath = ROOT;
         }            
         else if(currentSdState.equals(android.os.Environment.MEDIA_SHARED))
         {            	
-            Toast.makeText(this, R.string.MEDIA_SHARED, Toast.LENGTH_LONG).show();
+        	showMessage(R.string.MEDIA_SHARED);
             currentPath = ROOT;
         }            
         else if(currentSdState.equals(android.os.Environment.MEDIA_UNMOUNTABLE))
         {            	
-           	Toast.makeText(this, R.string.MEDIA_UNMOUNTABLE, Toast.LENGTH_LONG).show();
+        	showMessage(R.string.MEDIA_UNMOUNTABLE);
            	currentPath = ROOT;
         }            
         else if(currentSdState.equals(android.os.Environment.MEDIA_UNMOUNTED))
         {            	
-           	Toast.makeText(this, R.string.MEDIA_UNMOUNTED, Toast.LENGTH_LONG).show();
+        	showMessage(R.string.MEDIA_UNMOUNTED);        			
            	currentPath = ROOT;
         }
     }  
@@ -280,6 +331,7 @@ public class Main extends ListActivity
 							}
 			    		});
 			    	AlertDialog sortByNameDialog = dialogBuilder1.create();
+			    	sortByNameDialog.setOnShowListener(new AlertDialogListView());
 			    	sortByNameDialog.show();
 			    	break;
 				case 1:
@@ -306,6 +358,7 @@ public class Main extends ListActivity
 							}
 			    		});
 			    	AlertDialog sortBySizeDialog = dialogBuilder2.create();
+			    	sortBySizeDialog.setOnShowListener(new AlertDialogListView());
 			    	sortBySizeDialog.show();
 			    	break;
 				}								
@@ -313,6 +366,7 @@ public class Main extends ListActivity
 		});
 		
     	AlertDialog sortDialog = dialogBuilder.create();
+    	sortDialog.setOnShowListener(new AlertDialogListView());
     	sortDialog.show();
     }
     
@@ -326,7 +380,13 @@ public class Main extends ListActivity
     	AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);    	
     	dialogBuilder.setIcon(R.drawable.micromanager);
     	dialogBuilder.setTitle(R.string.info_title);
-    	dialogBuilder.setMessage(R.string.info_message);    	
+    	TextView message = new TextView(lContext);
+    	message.setTypeface(fontRegular);
+    	message.setTextColor(textColor);
+    	message.setTextSize(textSize);
+    	message.setGravity(direction);
+    	message.setText(R.string.info_message);
+    	dialogBuilder.setView(message);    	
     	AlertDialog infoDialog = dialogBuilder.create();
     	infoDialog.show();
     }    	
@@ -357,7 +417,7 @@ public class Main extends ListActivity
     			copy_move_item = "";
     			copy_move_Path = "";
     			pasteRequest = NO_REQUEST;
-    			Toast.makeText(lContext, R.string.copy_succ, Toast.LENGTH_LONG).show();
+    			showMessage(R.string.copy_succ);
     			displayContent();
     		}
     		else
@@ -365,7 +425,7 @@ public class Main extends ListActivity
     			copy_move_item = "";
     			copy_move_Path = "";
     			pasteRequest = NO_REQUEST;
-    			Toast.makeText(lContext, R.string.copy_fail, Toast.LENGTH_LONG).show();
+    			showMessage(R.string.copy_fail);
     			displayContent();
     		}
     	}
@@ -381,7 +441,7 @@ public class Main extends ListActivity
     		copy_move_Path = "";
     		copy_move_item = "";
     		pasteRequest = NO_REQUEST;
-    		Toast.makeText(lContext, R.string.move_succ, Toast.LENGTH_LONG).show();
+    		showMessage(R.string.move_succ);
     		displayContent();
     	}
     	else
@@ -389,7 +449,7 @@ public class Main extends ListActivity
     		copy_move_Path = "";
     		copy_move_item = "";
     		pasteRequest = NO_REQUEST;
-    		Toast.makeText(lContext, R.string.move_fail, Toast.LENGTH_LONG).show();
+    		showMessage(R.string.move_fail);
     		displayContent();
     	}    	
     } 
@@ -411,12 +471,24 @@ public class Main extends ListActivity
     	AlertDialog propertiesDialog = dialogBuilder.create();
     	propertiesDialog.show();
     	TextView name = (TextView)propertiesDialog.findViewById(R.id.nameProperties);
-    	name.setText("NAME : " + rowHolder.get(position).getLabel());
+    	name.setTypeface(fontRegular);
+    	name.setTextColor(textColor);
+    	name.setTextSize(textSize);
+    	String nameStr = getResources().getString(R.string.prop_name);
+    	name.setText(nameStr + rowHolder.get(position).getLabel());
     	TextView path = (TextView)propertiesDialog.findViewById(R.id.pathProperties);
-    	path.setText("PATH : " + currentPath);
-    	TextView size = (TextView)propertiesDialog.findViewById(R.id.sizeProperties);    	
+    	path.setTypeface(fontRegular);
+    	path.setTextColor(textColor);
+    	path.setTextSize(textSize);
+    	String pathStr = getResources().getString(R.string.prop_path);
+    	path.setText(pathStr + currentPath);
+    	TextView size = (TextView)propertiesDialog.findViewById(R.id.sizeProperties);
+    	size.setTypeface(fontRegular);
+    	size.setTextColor(textColor);
+    	size.setTextSize(textSize);
     	String sSize = getSizeString(rowHolder.get(position).getSize());
-    	size.setText("SIZE : " + sSize);
+    	String sizeStr = getResources().getString(R.string.prop_size);
+    	size.setText(sizeStr + sSize);
     	CheckBox hiddenCheckBox = (CheckBox)propertiesDialog.findViewById(R.id.hiddenCheckBox);
     	if(fileAction.isHidden(rowHolder.get(position).getLabel()))		
     		hiddenCheckBox.setChecked(true);
@@ -442,7 +514,9 @@ public class Main extends ListActivity
     			String newName = "." + nameTemp;
     			boolean result = fileAction.rename(currentPathTemp + nameTemp, currentPathTemp + newName);    			
     			if(!result)
-    				Toast.makeText(lContext, R.string.hidden_fail, Toast.LENGTH_LONG).show(); 
+    			{
+    				showMessage(R.string.hidden_fail);
+    			}
     			else
     			{
     				rowHolder.get(position).setLabel(newName);
@@ -454,7 +528,9 @@ public class Main extends ListActivity
     			String newName = nameTemp.substring(1);
     			boolean result = fileAction.rename(currentPathTemp + nameTemp, currentPathTemp + newName);    			
     			if(!result)
-    				Toast.makeText(lContext, R.string.unhidden_fail, Toast.LENGTH_LONG).show();
+    			{
+    				showMessage(R.string.unhidden_fail);
+    			}
     			else
     			{
     				rowHolder.get(position).setLabel(newName);
@@ -470,8 +546,13 @@ public class Main extends ListActivity
     	isBackDisabled(backBtn, currentPath);
     	isHomeDisabled(homeBtn, currentPath);
     	isPasteEnabled();
+    	LinearLayout listGui = (LinearLayout)findViewById(R.id.list_gui);
+    	listGui.setBackgroundColor(backColor2);    	
     	if(fileAction.isReadable(currentPath))
     	{
+    		selection.setTypeface(fontRegular);
+    		selection.setTextSize(textSize);
+    		selection.setTextColor(textColor);
     		selection.setText(currentPath);
     		switch(pasteRequest)
     		{
@@ -510,7 +591,9 @@ public class Main extends ListActivity
     	    });
     	}
     	else
-    		Toast.makeText(this, R.string.can_not_read_dir, Toast.LENGTH_LONG).show();		
+    	{
+    		showMessage(R.string.can_not_read_dir);
+    	}
    	}    	
     
     public class RowAdapter extends ArrayAdapter
@@ -523,14 +606,22 @@ public class Main extends ListActivity
     	public View getView(int position, View convertView, ViewGroup parent)
     	{		
     		View rowView = convertView;
-    		if(rowView == null)
-    		{
-    			LayoutInflater lInflater = getLayoutInflater();
-    			rowView = lInflater.inflate(R.layout.row_format, parent, false);    				
-    		}
-    		TextView label = (TextView)rowView.findViewById(R.id.name);    		    		
+    		LayoutInflater lInflater = getLayoutInflater();
+    		rowView = lInflater.inflate(R.layout.row_format, parent, false);
+    		if((position % 2) == 0)
+    			rowView.setBackgroundColor(backColor1);
+    		else
+    			rowView.setBackgroundColor(backColor2);
+    		
+    		TextView label = (TextView)rowView.findViewById(R.id.name); 
+    		label.setTypeface(fontBold);
+    		label.setTextSize(textSize);
+    		label.setTextColor(textColor);
     		label.setText(rowHolder.get(position).getLabel());
-    		TextView size = (TextView)rowView.findViewById(R.id.size);
+    		TextView size = (TextView)rowView.findViewById(R.id.size); 
+    		size.setTypeface(fontRegular);
+    		size.setTextSize(textSize);
+    		size.setTextColor(textColor);
     		size.setText(getSizeString(rowHolder.get(position).getSize()));
     		ImageView icon = (ImageView)rowView.findViewById(R.id.row_image);
     		icon.setImageDrawable(rowHolder.get(position).getIcon());    		    			
@@ -634,7 +725,7 @@ public class Main extends ListActivity
     		opt.outHeight = 0;
     		opt.outWidth = 0;
     		opt.inSampleSize = 1;
-    		//is this code waste time ?
+    		//does this code wasting time ?
     		BitmapFactory.decodeFile(path, opt);
     		int width = (opt.outWidth);
     		int hight = (opt.outHeight);
@@ -692,7 +783,9 @@ public class Main extends ListActivity
     			displayContent();
     		}
     		else
-    			Toast.makeText(lContext, R.string.can_not_read_dir, Toast.LENGTH_LONG).show();
+    		{
+    			showMessage(R.string.can_not_read_dir);
+    		}
     	}    		
     	// The Path Is File
     	else 
@@ -709,8 +802,8 @@ public class Main extends ListActivity
     		catch(ActivityNotFoundException e)
     		{
     			//TODO
-    			//create a dialog with all app listed
-    			Toast.makeText(this, R.string.app_not_found, Toast.LENGTH_LONG).show();
+    			//create a dialog with all app listed    			
+    			showMessage(R.string.app_not_found);    			
     		}    		
     	}    	  	  		
     }
@@ -721,15 +814,16 @@ public class Main extends ListActivity
         AlertDialog.Builder optionBuilder = new AlertDialog.Builder(this);
         optionBuilder.setTitle(rowHolder.get(position).getLabel());
         optionBuilder.setIcon(rowHolder.get(position).getIcon());
-       	optionBuilder.setItems(R.array.Options, new DialogInterface.OnClickListener() 
+        optionBuilder.setItems(R.array.Options, new DialogInterface.OnClickListener() 
         	{
         		public void onClick(DialogInterface dialoginterface,int witchBtn) 
         		{
         			optionSelect(v, position , witchBtn);
         		}
         	});
-        AlertDialog optionDialog = optionBuilder.create();
-       	optionDialog.show();
+        AlertDialog optionDialog = optionBuilder.create();        
+        optionDialog.setOnShowListener(new AlertDialogListView());        
+       	optionDialog.show();       	
     }
     
    	protected void optionSelect(View v, int position , int witchBtn) 
@@ -769,6 +863,11 @@ public class Main extends ListActivity
     {
     	LayoutInflater lInflater = getLayoutInflater();
     	View view = lInflater.inflate(R.layout.mkdir, null);
+    	TextView message = (TextView)view.findViewById(R.id.mkdir_input_message);
+    	message.setTypeface(fontRegular);
+    	message.setTextColor(textColor);
+    	message.setTextSize(textSize);
+    	message.setGravity(direction);
     	AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
     	dialogBuilder.setTitle(R.string.mkdir);
     	dialogBuilder.setView(view);
@@ -781,14 +880,12 @@ public class Main extends ListActivity
     
     private class MakedirDialogButtonListener implements android.content.DialogInterface.OnClickListener
     {
-    	private Context localContext = null;
     	private String inputText = null;
     	private View inputDialogView = null;
     		
     	public MakedirDialogButtonListener(View v, Context lContext)
     	{
     		inputDialogView = v;
-    		localContext = lContext;
     	}
     		
     	public void onClick(DialogInterface v, int buttonId)
@@ -803,16 +900,22 @@ public class Main extends ListActivity
     					boolean result = fileAction.createDir(currentPath, inputText);
     					if(result)
     					{
-    						Toast.makeText(localContext, R.string.mkdir_succ, Toast.LENGTH_LONG).show();
+    						showMessage(R.string.mkdir_succ);
     					}
     					else
-    						Toast.makeText(localContext, R.string.mkdir_fail, Toast.LENGTH_LONG).show();
+    					{
+    						showMessage(R.string.mkdir_fail);
+    					}
     				}
     				else
-    					Toast.makeText(localContext, R.string.mkdir_zero_input, Toast.LENGTH_LONG).show();			
+    				{
+    					showMessage(R.string.mkdir_zero_input);
+    				}
     			}
     			else
-    				Toast.makeText(localContext, R.string.mkdir_not_writeable, Toast.LENGTH_LONG).show();
+    			{
+    				showMessage(R.string.mkdir_not_writeable);
+    			}
     			displayContent();
     		}
     	}
@@ -828,6 +931,11 @@ public class Main extends ListActivity
     {
     	LayoutInflater lInflater = getLayoutInflater();
     	View view = lInflater.inflate(R.layout.rename, null);
+    	TextView message = (TextView)view.findViewById(R.id.rename_input_message);
+    	message.setTypeface(fontRegular);
+    	message.setTextColor(textColor);
+    	message.setTextSize(textSize);
+    	message.setGravity(direction);
     	EditText eText = (EditText)view.findViewById(R.id.rename_input);
     	eText.setText(rowHolder.get(position).getLabel());
     	AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
@@ -843,7 +951,6 @@ public class Main extends ListActivity
     
     private class RenameDialogButtonListener implements android.content.DialogInterface.OnClickListener
     {
-    	private Context localContext = null;
     	private String inputText = null;
     	private View inputDialogView = null;
     	private int position;
@@ -852,7 +959,6 @@ public class Main extends ListActivity
     	public RenameDialogButtonListener(View v, Context lContext, int pos)
     	{
     		inputDialogView = v;
-    		localContext = lContext;
     		position = pos;
     		oldPath = currentPath + rowHolder.get(position).getLabel();
     	}
@@ -871,16 +977,22 @@ public class Main extends ListActivity
     					if(result)    						
     					{
     						rowHolder.get(position).setLabel(inputText);
-    						Toast.makeText(localContext, R.string.rename_succ, Toast.LENGTH_LONG).show();
+    						showMessage(R.string.rename_succ);
     					}
     					else
-    						Toast.makeText(localContext, R.string.rename_fail, Toast.LENGTH_LONG).show();
+    					{
+    						showMessage(R.string.rename_fail);
+    					}
     				}
     				else
-    					Toast.makeText(localContext, R.string.rename_zero_input, Toast.LENGTH_LONG).show();			
+    				{
+    					showMessage(R.string.rename_zero_input);
+    				}
     			}
     			else
-    				Toast.makeText(localContext, R.string.rename_not_writeable, Toast.LENGTH_LONG).show();    			
+    			{
+    				showMessage(R.string.rename_not_writeable);
+    			}
     			rowAdapter.notifyDataSetChanged();
     		}
     	}
@@ -899,22 +1011,31 @@ public class Main extends ListActivity
         AlertDialog.Builder deletePromptBuilder = new AlertDialog.Builder(this);
         deletePromptBuilder.setTitle(R.string.delete_label);        
         deletePromptBuilder.setIcon(rowHolder.get(position).getIcon());
-        deletePromptBuilder.setMessage("Are You Sure Want To Delete   " + rowHolder.get(position).getLabel());
-        deletePromptBuilder.setPositiveButton("OK",new DialogInterface.OnClickListener()
+        String warn = getString(R.string.delete_warn);
+        TextView message = new TextView(lContext);
+        message.setTypeface(fontRegular);
+        message.setTextColor(textColor);
+        message.setTextSize(textSize);
+        message.setGravity(direction);
+        message.setText(warn + "\n" + rowHolder.get(position).getLabel());
+        deletePromptBuilder.setView(message);
+        deletePromptBuilder.setPositiveButton(R.string.ok,new DialogInterface.OnClickListener()
         		{
             		public void onClick(DialogInterface dialoginterface,int i) 
             		{
             			String pathTemp = currentPath + rowHolder.get(position).getLabel();
             			if(fileAction.deleteFile(pathTemp))
             			{
-            				Toast.makeText(lContext, R.string.delete_succ, Toast.LENGTH_LONG).show();
+            				showMessage(R.string.delete_succ);
             				displayContent();
             			}
             			else
-            				Toast.makeText(lContext, R.string.delete_fail, Toast.LENGTH_LONG).show();
+            			{
+            				showMessage(R.string.delete_fail);
+            			}
                		}
         		});
-        deletePromptBuilder.setNegativeButton("Cancel" , new DialogInterface.OnClickListener()
+        deletePromptBuilder.setNegativeButton(R.string.cancel , new DialogInterface.OnClickListener()
         		{
             		public void onClick(DialogInterface dialoginterface,int i) 
             		{            				
@@ -926,7 +1047,7 @@ public class Main extends ListActivity
     
     public boolean onCreateOptionsMenu(Menu menu)
     {
-    	menu.add(Menu.NONE, PREFERENCES_MENU, Menu.NONE, "Preferences")
+    	menu.add(Menu.NONE, PREFERENCES_MENU, Menu.NONE, R.string.preferences)
     			.setIcon(R.drawable.preferences);
     			//.setAlphabeticShortcut('p');
     	return (super.onCreateOptionsMenu(menu));
@@ -1050,5 +1171,31 @@ public class Main extends ListActivity
     		Collections.reverse(rowHolder);
     		break;
     	}    	
+    }
+    
+    public void setLanguage()
+    {
+    	
+    	Resources res = lContext.getResources();
+		DisplayMetrics dm = res.getDisplayMetrics();
+		android.content.res.Configuration conf = res.getConfiguration();
+		conf.locale = new Locale(language);
+		res.updateConfiguration(conf, dm);		
+    }
+    
+    public void showMessage(int text)
+    {
+    	LayoutInflater inflater = getLayoutInflater();
+		View view = inflater.inflate(R.layout.toast, null);
+		TextView message = (TextView)view.findViewById(R.id.toast_message);
+		message.setTypeface(fontRegular);
+		message.setTextColor(textColor);
+		message.setTextSize(textSize);
+		message.setGravity(direction);
+		message.setText(text);
+		Toast toast = new Toast(lContext);
+		toast.setDuration(Toast.LENGTH_LONG);
+		toast.setView(view);
+		toast.show();
     }
 }

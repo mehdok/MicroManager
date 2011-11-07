@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+	Micro Manager, an open source file manager for the Android system
+    Copyright (C) 2011  Mehdi Sohrabi <a.micromanager@gmail.com> <http://mehdok.blogspot.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+-->
+
+<resources>
+	
+    <string name="app_name">Micro Manager</string>
+    <string name="info_title">&#xfee3;&#xfef4;&#xfb91;&#xfeae;&#xfeed;&#x0020;&#xfee3;&#xfee8;&#xfef4;&#xfea0;&#xfeae;</string>
+    <string name="info_message">(13/8/1390)&#x0020;&#x06f0;&#x002f;&#x06f6;.&#x06f2;&#x0020;&#xfee3;&#xfef4;&#xfb91;&#xfeae;&#xfeed;&#x0020;&#xfee3;&#xfee8;&#xfef4;&#xfea0;&#xfeae;&#x0020;&#xfee7;&#xfeb4;&#xfea8;&#xfeea;&#x0020; \n\nCopyRight (C) 2011 Mehdi Sohrabi\n\nmehdok.blogspot.com\n\na.micromanager@gmail.com</string>
+    <string name="MEDIA_BAD_REMOVAL">&#xfedb;&#xfe8e;&#xfead;&#xfe95;&#x0020;&#xfea3;&#xfe8e;&#xfed3;&#xfec8;&#xfeea;&#x0020;&#xfed7;&#xfe92;&#xfede;&#x0020;&#xfe8d;&#xfeaf;&#x0020;&#xfe8d;&#xfef3;&#xfee8;&#xfedc;&#xfeea;&#x0020;&#xfe97;&#xfeee;&#xfeb3;&#xfec2;&#x0020;&#xfeb3;&#xfef4;&#xfeb4;&#xfe98;&#xfee2;&#x0020;&#xfecf;&#xfef4;&#xfeae;&#xfed3;&#xfecc;&#xfe8e;&#xfedd;&#x0020;&#xfeb7;&#xfeee;&#xfea9;&#x0020;&#xfe97;&#xfeee;&#xfeb3;&#xfec2;&#x0020;&#xfedb;&#xfe8e;&#xfead;&#xfe91;&#xfeae;&#x0020;&#xfe91;&#xfeae;&#xfea9;&#xfe8d;&#xfeb7;&#xfe98;&#xfeea;&#x0020;&#xfeb7;&#xfeaa;&#xfee9;&#x0020;&#xfe8d;&#xfeb3;&#xfe96;</string>
+    <string name="MEDIA_MOUNTED">&#xfedb;&#xfe8e;&#xfead;&#xfe95;&#x0020;&#xfea3;&#xfe8e;&#xfed3;&#xfec8;&#xfeea;&#x0020;&#xfe97;&#xfeb8;&#xfea8;&#xfef4;&#xfeba;&#x0020;&#xfea9;&#xfe8d;&#xfea9;&#xfee9;&#x0020;&#xfeb7;&#xfeaa;&#xfee9;&#x0020;&#xfeed;&#x0020;&#xfe91;&#xfe8e;&#x0020;&#xfea9;&#xfeb3;&#xfe98;&#xfeae;&#xfeb3;&#xfef0;&#x0020;&#xfea7;&#xfeee;&#xfe8d;&#xfee7;&#xfeaa;&#xfee5;&#x0020;&#xfeed;&#x0020;&#xfee7;&#xfeee;&#xfeb7;&#xfe98;&#xfee6;&#x0020;&#xfe91;&#xfe8e;&#xfead;&#xfb94;&#xfeac;&#xfe8d;&#xfead;&#xfeef;&#x0020;&#xfeb7;&#xfeaa;&#xfee9;&#x0020;&#xfe8d;&#xfeb3;&#xfe96;</string>
+    <string name="MEDIA_MOUNTED_READ_ONLY">&#xfedb;&#xfe8e;&#xfead;&#xfe95;&#x0020;&#xfea3;&#xfe8e;&#xfed3;&#xfec8;&#xfeea;&#x0020;&#xfe97;&#xfeb8;&#xfea8;&#xfef4;&#xfeba;&#x0020;&#xfea9;&#xfe8d;&#xfea9;&#xfee9;&#x0020;&#xfeb7;&#xfeaa;&#xfee9;&#x0020;&#xfeed;&#x0020;&#xfe91;&#xfe8e;&#x0020;&#xfea9;&#xfeb3;&#xfe98;&#xfeae;&#xfeb3;&#xfef0;&#x0020;&#xfea7;&#xfeee;&#xfe8d;&#xfee7;&#xfeaa;&#xfee5;&#x0020;&#xfe91;&#xfe8e;&#xfead;&#xfb94;&#xfeac;&#xfe8d;&#xfead;&#xfeef;&#x0020;&#xfeb7;&#xfeaa;&#xfee9;&#x0020;&#xfe8d;&#xfeb3;&#xfe96;</string>
+    <string name="MEDIA_REMOVED">&#xfedb;&#xfe8e;&#xfead;&#xfe95;&#x0020;&#xfea3;&#xfe8e;&#xfed3;&#xfec8;&#xfeea;&#x0020;&#xfee3;&#xfeee;&#xfe9f;&#xfeee;&#xfea9;&#x0020;&#xfee7;&#xfef4;&#xfeb4;&#xfe96;</string>
+    <string name="MEDIA_SHARED">&#xfedb;&#xfe8e;&#xfead;&#xfe95;&#x0020;&#xfea3;&#xfe8e;&#xfed3;&#xfec8;&#xfeea;&#x0020;&#xfee3;&#xfeee;&#xfe9f;&#xfeee;&#xfea9;&#x0020;&#xfe8d;&#xfeb3;&#xfe96;&#x0020;&#xfeed;&#xfedf;&#xfef0;&#x0020;&#xfe8d;&#xfeaf;&#x0020;&#xfec3;&#xfeae;&#xfef3;&#xfed6;&#x0020;&#xfef3;&#xfeee;&#x0020;&#xfe8d;&#xfeb1;&#x0020;&#xfe91;&#xfef0;&#x0020;&#xfe91;&#xfeea;&#x0020;&#xfe8d;&#xfeb7;&#xfe98;&#xfeae;&#xfe8d;&#xfb8e;&#x0020;&#xfb94;&#xfeac;&#xfe8d;&#xfeb7;&#xfe98;&#xfeea;&#x0020;&#xfeb7;&#xfeaa;&#xfee9;&#x0020;&#xfe8d;&#xfeb3;&#xfe96;</string>
+    <string name="MEDIA_UNMOUNTABLE">&#xfedb;&#xfe8e;&#xfead;&#xfe95;&#x0020;&#xfea3;&#xfe8e;&#xfed3;&#xfec8;&#xfeea;&#x0020;&#xfee3;&#xfeee;&#xfe9f;&#xfeee;&#xfea9;&#x0020;&#xfe8d;&#xfeb3;&#xfe96;&#x0020;&#xfeed;&#xfedf;&#xfef0;&#x0020;&#xfed7;&#xfe8e;&#xfe91;&#xfede;&#x0020;&#xfe91;&#xfe8e;&#xfead;&#xfb94;&#xfeac;&#xfe8d;&#xfead;&#xfeef;&#x0020;&#xfee7;&#xfef4;&#xfeb4;&#xfe96;</string>
+    <string name="MEDIA_UNMOUNTED">&#xfedb;&#xfe8e;&#xfead;&#xfe95;&#x0020;&#xfea3;&#xfe8e;&#xfed3;&#xfec8;&#xfeea;&#x0020;&#xfee3;&#xfeee;&#xfe9f;&#xfeee;&#xfea9;&#x0020;&#xfe8d;&#xfeb3;&#xfe96;&#x0020;&#xfeed;&#xfedf;&#xfef0;&#x0020;&#xfe91;&#xfe8e;&#xfead;&#xfb94;&#xfeac;&#xfe8d;&#xfead;&#xfeef;&#x0020;&#xfee7;&#xfeb8;&#xfeaa;&#xfee9;&#x0020;&#xfe8d;&#xfeb3;&#xfe96;</string>
+    
+    <string name="error">&#xfea7;&#xfec4;&#xfe8e;</string>    
+	<string name="exit">&#xfea7;&#xfeae;&#xfeed;&#xfe9d;</string>
+	<string name="ok">&#xfed7;&#xfe92;&#xfeee;&#xfedd;</string>
+	<string name="cancel">&#xfe8d;&#xfee7;&#xfebc;&#xfeae;&#xfe8d;&#xfed1;</string>
+	
+	<string name="listgui">&#xfee7;&#xfee4;&#xfe8e;&#xfeef;&#x0020;&#xfedf;&#xfef4;&#xfeb4;&#xfe98;&#xfef0;</string>
+	<string name="preferences">&#xfe97;&#xfee8;&#xfec8;&#xfef4;&#xfee4;&#xfe8e;&#xfe95;</string>
+	
+	<string name="mkdir">&#xfea9;&#xfe8d;&#xfef3;&#xfeae;&#xfedb;&#xfe98;&#xfeee;&#xfead;&#xfeef;&#x0020;&#xfe9f;&#xfeaa;&#xfef3;&#xfeaa;</string>
+	<string name="mkdir_text">&#xfee7;&#xfe8e;&#xfee1;&#x0020;&#xfea9;&#xfe8d;&#xfef3;&#xfeae;&#xfedb;&#xfe98;&#xfeee;&#xfead;&#xfeef;&#x0020;&#xfe9f;&#xfeaa;&#xfef3;&#xfeaa;&#x0020;&#xfead;&#xfe8d;&#x0020;&#xfeed;&#xfe8d;&#xfead;&#xfea9;&#x0020;&#xfedb;&#xfee8;&#xfef4;&#xfeaa;</string>
+	<string name="rename_text">&#xfee7;&#xfe8e;&#xfee1;&#x0020;&#xfe9f;&#xfeaa;&#xfef3;&#xfeaa;&#x0020;&#xfead;&#xfe8d;&#x0020;&#xfeed;&#xfe8d;&#xfead;&#xfea9;&#x0020;&#xfedb;&#xfee8;&#xfef4;&#xfeaa;</string>
+	<string name="rename">&#xfe97;&#xfed0;&#xfef4;&#xfef4;&#xfeae;&#x0020;&#xfee7;&#xfe8e;&#xfee1;</string>
+	
+	<string name="mkdir_succ">&#xfea9;&#xfe8d;&#xfef3;&#xfeae;&#xfedb;&#xfe98;&#xfeee;&#xfead;&#xfeef;&#x0020;&#xfe9f;&#xfeaa;&#xfef3;&#xfeaa;&#x0020;&#xfe91;&#xfe8e;&#x0020;&#xfee3;&#xfeee;&#xfed3;&#xfed8;&#xfef4;&#xfe96;&#x0020;&#xfeb3;&#xfe8e;&#xfea7;&#xfe98;&#xfeea;&#x0020;&#xfeb7;&#xfeaa;</string>
+	<string name="mkdir_fail">&#xfeeb;&#xfee8;&#xfb95;&#xfe8e;&#xfee1;&#x0020;&#xfeb3;&#xfe8e;&#xfea7;&#xfe96;&#x0020;&#xfea9;&#xfe8d;&#xfef3;&#xfeae;&#xfedb;&#xfe98;&#xfeee;&#xfead;&#xfeef;&#x0020;&#xfe9f;&#xfeaa;&#xfef3;&#xfeaa;&#x0020;&#xfea7;&#xfec4;&#xfe8e;&#xfef3;&#xfef0;&#x0020;&#xfead;&#xfea5;&#x0020;&#xfea9;&#xfe8d;&#xfea9;&#xfee9;&#x0020;&#xfe8d;&#xfeb3;&#xfe96;</string>
+	<string name="mkdir_not_writeable">&#xfea9;&#xfe8d;&#xfef3;&#xfeae;&#xfedb;&#xfe98;&#xfeee;&#xfead;&#xfeef;&#x0020;&#xfed3;&#xfecc;&#xfee0;&#xfef0;&#x0020;&#xfed7;&#xfe8e;&#xfe91;&#xfede;&#x0020;&#xfee7;&#xfeee;&#xfeb7;&#xfe98;&#xfee6;&#x0020;&#xfee7;&#xfef4;&#xfeb4;&#xfe96;&#x0020;&#xfe91;&#xfee8;&#xfe8e;&#xfe91;&#xfeae;&#xfe8d;&#xfef3;&#xfee6;&#x0020;&#xfea9;&#xfe8d;&#xfef3;&#xfeae;&#xfedb;&#xfe98;&#xfeee;&#xfead;&#xfeef;&#x0020;&#xfe9f;&#xfeaa;&#xfef3;&#xfeaa;&#x0020;&#xfeb3;&#xfe8e;&#xfea7;&#xfe98;&#xfeea;&#x0020;&#xfee7;&#xfeb8;&#xfeaa;</string>
+	<string name="mkdir_zero_input">&#xfb7c;&#xfef4;&#xfeb0;&#xfeef;&#x0020;&#xfeb3;&#xfe8e;&#xfea7;&#xfe98;&#xfeea;&#x0020;&#xfee7;&#xfeb8;&#xfeaa;</string>
+	
+	<string name="rename_succ">&#xfe97;&#xfed0;&#xfef4;&#xfef4;&#xfeae;&#x0020;&#xfee7;&#xfe8e;&#xfee1;&#x0020;&#xfe91;&#xfe8e;&#x0020;&#xfee3;&#xfeee;&#xfed3;&#xfed8;&#xfef4;&#xfe96;&#x0020;&#xfe8d;&#xfee7;&#xfea0;&#xfe8e;&#xfee1;&#x0020;&#xfeb7;&#xfeaa;</string>
+	<string name="rename_fail">&#xfe97;&#xfed0;&#xfef4;&#xfef4;&#xfeae;&#x0020;&#xfee7;&#xfe8e;&#xfee1;&#x0020;&#xfe91;&#xfe8e;&#x0020;&#xfea7;&#xfec4;&#xfe8e;&#x0020;&#xfee3;&#xfeee;&#xfe8d;&#xfe9f;&#xfeea;&#x0020;&#xfeb7;&#xfeaa;</string>
+	<string name="rename_not_writeable">&#xfed3;&#xfe8e;&#xfef3;&#xfede;&#x0020;&#xfed3;&#xfecc;&#xfee0;&#xfef0;&#x0020;&#xfed7;&#xfe8e;&#xfe91;&#xfede;&#x0020;&#xfee7;&#xfeee;&#xfeb7;&#xfe98;&#xfee6;&#x0020;&#xfee7;&#xfef4;&#xfeb4;&#xfe96;</string>
+	<string name="rename_zero_input">&#xfe97;&#xfed0;&#xfef4;&#xfef4;&#xfeae;&#x0020;&#xfee7;&#xfe8e;&#xfee1;&#x0020;&#xfead;&#xfea5;&#x0020;&#xfee7;&#xfeaa;&#xfe8d;&#xfea9;</string>
+	
+	<string name="can_not_read_dir">&#xfe8d;&#xfef3;&#xfee6;&#x0020;&#xfea9;&#xfe8d;&#xfef3;&#xfeae;&#xfedb;&#xfe98;&#xfeee;&#xfead;&#xfeef;&#x0020;&#xfed7;&#xfe8e;&#xfe91;&#xfede;&#x0020;&#xfea9;&#xfeb3;&#xfe98;&#xfeae;&#xfeb3;&#xfef0;&#x0020;&#xfee7;&#xfef4;&#xfeb4;&#xfe96;</string>
+	
+	<string name="copy_label">&#xfedb;&#xfb59;&#xfef0;</string>
+    <string name="move_label">&#xfe9f;&#xfe8e;&#xfe91;&#xfea0;&#xfe8e;&#xfef3;&#xfef0;</string>
+    <string name="paste_label">&#xfb7c;&#xfeb4;&#xfe92;&#xfe8e;&#xfee7;&#xfeaa;&#xfee5;</string>
+    <string name="rename_label">&#xfe97;&#xfed0;&#xfef4;&#xfef4;&#xfeae;&#x0020;&#xfee7;&#xfe8e;&#xfee1;</string>
+    <string name="delete_label">&#xfea3;&#xfeac;&#xfed1;</string>
+    <string name="properties_label">&#xfe9f;&#xfeb0;&#xfef3;&#xfef4;&#xfe8e;&#xfe95;</string>
+    
+    <string name="delete_succ">&#xfecb;&#xfee4;&#xfee0;&#xfef4;&#xfe8e;&#xfe95;&#x0020;&#xfea3;&#xfeac;&#xfed1;&#x0020;&#xfe91;&#xfe8e;&#x0020;&#xfee3;&#xfeee;&#xfed3;&#xfed8;&#xfef4;&#xfe96;&#x0020;&#xfe8d;&#xfee7;&#xfea0;&#xfe8e;&#xfee1;&#x0020;&#xfeb7;&#xfeaa;</string>
+    <string name="delete_fail">&#xfe91;&#xfeae;&#x0020;&#xfe8d;&#xfeb3;&#xfe8e;&#xfeb1;&#x0020;&#xfeb3;&#xfec4;&#xfeee;&#xfea1;&#x0020;&#xfea9;&#xfeb3;&#xfe98;&#xfeae;&#xfeb3;&#xfef0;&#x0020;&#xfe8d;&#xfef3;&#xfee6;&#x0020;&#xfe81;&#xfef3;&#xfe98;&#xfee2;&#x0020;&#xfed7;&#xfe8e;&#xfe91;&#xfede;&#x0020;&#xfea3;&#xfeac;&#xfed1;&#x0020;&#xfee7;&#xfef4;&#xfeb4;&#xfe96;</string>
+    
+    <string name="copy_succ">&#xfecb;&#xfee4;&#xfee0;&#xfef4;&#xfe8e;&#xfe95;&#x0020;&#xfedb;&#xfb59;&#xfef0;&#x0020;&#xfe91;&#xfe8e;&#x0020;&#xfee3;&#xfeee;&#xfed3;&#xfed8;&#xfef4;&#xfe96;&#x0020;&#xfe8d;&#xfee7;&#xfea0;&#xfe8e;&#xfee1;&#x0020;&#xfeb7;&#xfeaa;</string>
+    <string name="copy_fail">&#xfecb;&#xfee4;&#xfee0;&#xfef4;&#xfe8e;&#xfe95;&#x0020;&#xfedb;&#xfb59;&#xfef0;&#x0020;&#xfe91;&#xfe8e;&#x0020;&#xfee3;&#xfeee;&#xfed3;&#xfed8;&#xfef4;&#xfe96;&#x0020;&#xfe8d;&#xfee7;&#xfea0;&#xfe8e;&#xfee1;&#x0020;&#xfee7;&#xfeb8;&#xfeaa;</string>
+    
+    <string name="move_succ">&#xfecb;&#xfee4;&#xfee0;&#xfef4;&#xfe8e;&#xfe95;&#x0020;&#xfe9f;&#xfe8e;&#xfe91;&#xfea0;&#xfe8e;&#xfef3;&#xfef0;&#x0020;&#xfe91;&#xfe8e;&#x0020;&#xfee3;&#xfeee;&#xfed3;&#xfed8;&#xfef4;&#xfe96;&#x0020;&#xfe8d;&#xfee7;&#xfea0;&#xfe8e;&#xfee1;&#x0020;&#xfeb7;&#xfeaa;</string>
+    <string name="move_fail">&#xfecb;&#xfee4;&#xfee0;&#xfef4;&#xfe8e;&#xfe95;&#x0020;&#xfe9f;&#xfe8e;&#xfe91;&#xfea0;&#xfe8e;&#xfef3;&#xfef0;&#x0020;&#xfe91;&#xfe8e;&#x0020;&#xfee3;&#xfeee;&#xfed3;&#xfed8;&#xfef4;&#xfe96;&#x0020;&#xfe8d;&#xfee7;&#xfea0;&#xfe8e;&#xfee1;&#x0020;&#xfee7;&#xfeb8;&#xfeaa;</string>
+    
+    <string name="hidden_fail">&#xfecb;&#xfee4;&#xfee0;&#xfef4;&#xfe8e;&#xfe95;&#x0020;&#xfee3;&#xfea8;&#xfed4;&#xfef0;&#x0020;&#xfeb3;&#xfe8e;&#xfeaf;&#xfeef;&#x0020;&#xfe91;&#xfe8e;&#x0020;&#xfee3;&#xfeee;&#xfed3;&#xfed8;&#xfef4;&#xfe96;&#x0020;&#xfe8d;&#xfee7;&#xfea0;&#xfe8e;&#xfee1;&#x0020;&#xfee7;&#xfeb8;&#xfeaa;</string>
+    <string name="unhidden_fail">&#xfecb;&#xfee4;&#xfee0;&#xfef4;&#xfe8e;&#xfe95;&#x0020;&#xfe81;&#xfeb7;&#xfedc;&#xfe8e;&#xfead;&#x0020;&#xfeb3;&#xfe8e;&#xfeaf;&#xfeef;&#x0020;&#xfe91;&#xfe8e;&#x0020;&#xfee3;&#xfeee;&#xfed3;&#xfed8;&#xfef4;&#xfe96;&#x0020;&#xfe8d;&#xfee7;&#xfea0;&#xfe8e;&#xfee1;&#x0020;&#xfee7;&#xfeb8;&#xfeaa;</string>
+    
+    <string name="app_not_found">&#xfee3;&#xfe98;&#xfe84;&#xfeb3;&#xfed4;&#xfe8e;&#xfee7;&#xfeea;&#x0020;&#xfe8d;&#xfb58;&#xfee0;&#xfef4;&#xfedc;&#xfef4;&#xfeb8;&#xfee6;&#x0020;&#xfee3;&#xfee8;&#xfe8e;&#xfeb3;&#xfe90;&#x0020;&#xfe9f;&#xfeec;&#xfe96;&#x0020;&#xfe8d;&#xfe9f;&#xfeae;&#xfe8d;&#xfeef;&#x0020;&#xfe8d;&#xfef3;&#xfee6;&#x0020;&#xfed3;&#xfe8e;&#xfef3;&#xfede;&#x0020;&#xfb58;&#xfef4;&#xfeaa;&#xfe8d;&#x0020;&#xfee7;&#xfeb8;&#xfeaa;</string>
+    
+    <string name="sort">&#xfee3;&#xfeae;&#xfe97;&#xfe90;&#x0020;&#xfeb3;&#xfe8e;&#xfeaf;&#xfeef;</string>
+    <string name="sort_by_name">&#xfee3;&#xfeae;&#xfe97;&#xfe90;&#x0020;&#xfeb3;&#xfe8e;&#xfeaf;&#xfeef;&#x0020;&#xfe91;&#xfeae;&#x0020;&#xfe8d;&#xfeb3;&#xfe8e;&#xfeb1;&#x0020;&#xfee7;&#xfe8e;&#xfee1;</string>
+    <string name="sort_by_size">&#xfee3;&#xfeae;&#xfe97;&#xfe90;&#x0020;&#xfeb3;&#xfe8e;&#xfeaf;&#xfeef;&#x0020;&#xfe91;&#xfeae;&#x0020;&#xfe8d;&#xfeb3;&#xfe8e;&#xfeb1;&#x0020;&#xfeb3;&#xfe8e;&#xfef3;&#xfeb0;</string>
+    <string name="ascending">&#xfebb;&#xfecc;&#xfeee;&#xfea9;&#xfeef;</string>
+    <string name="descending">&#xfee7;&#xfeb0;&#xfeed;&#xfedf;&#xfef0;</string>
+    
+    <string name="show_hidden_files">&#xfee7;&#xfee4;&#xfe8e;&#xfef3;&#xfeb6;&#x0020;&#xfed3;&#xfe8e;&#xfef3;&#xfee0;&#xfeec;&#xfe8e;&#xfeef;&#x0020;&#xfee3;&#xfea8;&#xfed4;&#xfef0;</string>
+    <string name="toggle_hidden_files">&#xfb7c;&#xfb95;&#xfeee;&#xfee7;&#xfb95;&#xfef0;&#x0020;&#xfee7;&#xfee4;&#xfe8e;&#xfef3;&#xfeb6;&#x0020;&#xfed3;&#xfe8e;&#xfef3;&#xfee0;&#xfeec;&#xfe8e;&#xfeef;&#x0020;&#xfee3;&#xfea8;&#xfed4;&#xfef0;</string>
+    <string name="thumbnail_size">&#xfe8d;&#xfee7;&#xfeaa;&#xfe8d;&#xfeaf;&#xfee9;&#x0020;&#xfe81;&#xfef3;&#xfedc;&#xfeee;&#xfee5;</string>
+    <string name="thumbnail_size_in_pixel">&#xfe8d;&#xfee7;&#xfeaa;&#xfe8d;&#xfeaf;&#xfee9;&#x0020;&#xfe81;&#xfef3;&#xfedc;&#xfeee;&#xfee5;&#x0020;&#xfe91;&#xfeae;&#x0020;&#xfea3;&#xfeb4;&#xfe90;&#x0020;&#xfb58;&#xfef4;&#xfedc;&#xfeb4;&#xfede;</string>
+    <string name="language">&#xfeaf;&#xfe91;&#xfe8e;&#xfee5;</string>
+    <string name="lang_summery">&#xfe8d;&#xfee7;&#xfe98;&#xfea8;&#xfe8e;&#xfe8f;&#x0020;&#xfeaf;&#xfe91;&#xfe8e;&#xfee5;&#x0020;&#xfe91;&#xfeae;&#xfe8d;&#xfeef;&#x0020;&#xfead;&#xfe8d;&#xfe91;&#xfec2;&#x0020;&#xfedb;&#xfe8e;&#xfead;&#xfe91;&#xfeae;&#xfeef;</string>
+    <string name="english">&#xfe8d;&#xfee7;&#xfb95;&#xfee0;&#xfef4;&#xfeb4;&#xfef0;</string>
+    <string name="persian">&#xfed3;&#xfe8e;&#xfead;&#xfeb3;&#xfef0;</string>
+    <string name="english_short">en</string>
+    <string name="persian_short">fa</string>
+    
+    <string name="delete_warn">&#xfee3;&#xfec4;&#xfee4;&#xfe8c;&#xfee6;&#x0020;&#xfeeb;&#xfeb4;&#xfe98;&#xfef4;&#xfeaa;&#x0020;&#xfedb;&#xfeea;&#x0020;&#xfee3;&#xfef0;&#x0020;&#xfea7;&#xfeee;&#xfe8d;&#xfeeb;&#xfef4;&#xfeaa;&#x0020;&#xfe81;&#xfef3;&#xfe98;&#xfee2;&#x0020;&#xfeaf;&#xfef3;&#xfeae;&#x0020;&#xfead;&#xfe8d;&#x0020;&#xfea3;&#xfeac;&#xfed1;&#x0020;&#xfedb;&#xfee8;&#xfef4;&#xfeaa;</string> 
+    
+    <string name="prop_name">&#xfee7;&#xfe8e;&#xfee1; :</string>
+    <string name="prop_path">&#xfee3;&#xfeb4;&#xfef4;&#xfeae; :</string>
+    <string name="prop_size">&#xfeb3;&#xfe8e;&#xfef3;&#xfeb0; :</string>
+    
+    <string name="default_color">&#xfebd;&#xfeae;&#xfed3;&#x0020;&#xfeb6;&#xfef4;&#xfb58;&#x0020;&#xfb93;&#xfee7;&#xfead;</string>
+    <string name="select_color">&#xfe8f;&#xfe8e;&#xfea8;&#xfe98;&#xfee7;&#xfe8d;</string>
+    <string name="select_color_title">&#xfe8d;&#xfee7;&#xfe98;&#xfea8;&#xfe8e;&#xfe8f;&#x0020;&#xfead;&#xfee7;&#xfb93;</string>
+    <string name="text_size">&#xfe8d;&#xfee7;&#xfeaa;&#xfe8d;&#xfeaf;&#xfee9;&#x0020;&#xfee3;&#xfe98;&#xfee6;</string>
+    
+    <string name="gui_color">&#xfead;&#xfee7;&#xfb93;&#x0020;&#xfead;&#xfe8d;&#xfe91;&#xfec2;&#x0020;&#xfedb;&#xfe8e;&#xfead;&#xfe91;&#xfeae;&#xfef1;</string>
+    <string name="gui_color_summery">&#xfe97;&#xfee8;&#xfec8;&#xfef4;&#xfee4;&#xfe8e;&#xfe95;&#x0020;&#xfead;&#xfee7;&#xfb93;&#x0020;&#xfead;&#xfe8d;&#xfe91;&#xfec2;&#x0020;&#xfedb;&#xfe8e;&#xfead;&#xfe91;&#xfeae;&#xfef1;</string>
+    
+    <string name="text_color">&#xfead;&#xfee7;&#xfb93;&#x0020;&#xfee3;&#xfe98;&#xfee6;</string>
+    <string name="back_color_1">&#xfead;&#xfee7;&#xfb93;&#x0020;&#xfb58;&#xfeb2;&#x0020;&#xfeaf;&#xfee3;&#xfef4;&#xfee8;&#xfeea;&#x0661;</string>
+    <string name="back_color_2">&#xfead;&#xfee7;&#xfb93;&#x0020;&#xfb58;&#xfeb2;&#x0020;&#xfeaf;&#xfee3;&#xfef4;&#xfee8;&#xfeea;&#x0662;</string>
+    
+    <string name="reset_setting">&#xfe97;&#xfee8;&#xfec8;&#xfef4;&#xfee4;&#xfe8e;&#xfe95;&#x0020;&#xfb58;&#xfef4;&#xfeb6;&#x0020;&#xfed3;&#xfeae;&#xfebd;</string>
+    <string name="reset_setting_summery">&#xfe91;&#xfe8e;&#xfeaf;&#xfb94;&#xfeae;&#xfea9;&#xfe8d;&#xfee7;&#xfeaa;&#xfee5;&#x0020;&#xfe97;&#xfee8;&#xfec8;&#xfef4;&#xfee4;&#xfe8e;&#xfe95;&#x0020;&#xfe91;&#xfeea;&#x0020;&#xfea3;&#xfe8e;&#xfedf;&#xfe96;&#x0020;&#xfb58;&#xfef4;&#xfeb6;&#x0020;&#xfed3;&#xfeae;&#xfebd;</string>
+    
+</resources>
